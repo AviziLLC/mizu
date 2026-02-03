@@ -8,6 +8,7 @@ Mizu is designed from the ground-up to be fully cross-platform: it can run on de
 ## Features
 - Free and open-source forever
 - Study spaced repetition flashcards with built-in FSRS (Free Spaced Repetition Scheduler)
+- **Import existing decks and card content from Anki!**
 - Unlimited decks and sub-decks
 - Add tags to label cards across different decks
 - Card templates that support Basic cards, Cloze deletion cards, media (images, video, audio), image-occlusion, LaTeX
