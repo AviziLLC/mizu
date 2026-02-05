@@ -1,0 +1,7 @@
+{
+  "name": "Mizu",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
