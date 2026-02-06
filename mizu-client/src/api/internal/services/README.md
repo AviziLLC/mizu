@@ -1,0 +1,2 @@
+Services are lower-level API classes, functions, and everything else relevant to specific features or external
+integrations. Services are thin wrappers and do not care that they are inside a user-facing application.

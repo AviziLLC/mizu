@@ -1,0 +1,1 @@
+This folder contains plugin APIs intended to be safely accessible by plugin code.

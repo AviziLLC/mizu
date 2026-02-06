@@ -1,0 +1,1 @@
+This `/api` folder contains APIs used by the frontend to perform business logic. 
