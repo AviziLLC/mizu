@@ -1,0 +1,21 @@
+.home-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+ion-card {
+    margin-inline: 0;
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+ion-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+ion-title {
+    padding-inline: 0;
+    font-weight: 700;
+    color: var(--ion-color-dark);
+}
