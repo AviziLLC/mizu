@@ -1,9 +1,4 @@
-import {
-    ClozeBackFieldContent,
-    ClozeFrontFieldContent,
-    ImageOcclusionFieldContent,
-    MarkdownFieldContent
-} from "../field/FieldContent";
+export type HtmlRawString = string;
 
 /**
  * Card schema represents the fields of the card type.
@@ -14,28 +9,24 @@ export interface CardSchema {
 }
 
 export interface BasicCardSchema extends CardSchema {
-    front: MarkdownFieldContent;
-    back: MarkdownFieldContent;
+    front: HtmlRawString;
+    back: HtmlRawString;
+}
+
+export interface BasicAndReversedCardSchema extends CardSchema {
+    front: HtmlRawString;
+    back: HtmlRawString;
 }
 
 export interface ClozeCardSchema extends CardSchema {
-    front: ClozeFrontFieldContent;
+    front: HtmlRawString;
     back: {
-        text: ClozeBackFieldContent;
-        extra: MarkdownFieldContent;
+        text: HtmlRawString;
+        extraText: HtmlRawString;
     }
 }
 
 export interface ImageOcclusionCardSchema extends CardSchema {
-    front: ImageOcclusionFieldContent;
-    back: {
-        image: Blob;
-        extra: MarkdownFieldContent;
-    }
-}
-
-export interface CardTypeToSchemaMap {
-    basic: BasicCardSchema
-    cloze: ClozeCardSchema,
-    imageOcclusion: ImageOcclusionCardSchema
+    front: HtmlRawString;
+    back: HtmlRawString;
 }

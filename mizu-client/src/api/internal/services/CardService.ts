@@ -1,14 +1,4 @@
-import {BasicCardSchema, CardSchema, CardType, CardTypeToSchemaMap} from "../types/card/CardType";
-import {
-    CardTemplate,
-    CardTemplateAny,
-    CardTemplateBasic,
-    CardTemplateBasicReversed,
-    CardTemplateCloze, CardTemplateCustom, CardTemplateImageOcclusion
-} from "../types/card/CardTemplate";
-import {Card} from "../types/card/Card";
-
-import {MarkdownFieldContent} from "../types/field/FieldContent";
+import {BasicCardSchema, CardSchema, HtmlRawString} from "../types/card/CardType";
 
 export async function createCard<T extends CardSchema>(
     front: T['front'],
@@ -18,7 +8,7 @@ export async function createCard<T extends CardSchema>(
     // todo return card
 }
 
-export async function createBasicCard(front: MarkdownFieldContent, back: MarkdownFieldContent) {
+export async function createBasicCard(front: HtmlRawString, back: HtmlRawString) {
 
     return createCard<BasicCardSchema>(front, back)
 }
