@@ -30,3 +30,4 @@ export interface ImageOcclusionCardSchema extends CardSchema {
     front: HtmlRawString;
     back: HtmlRawString;
 }
+
