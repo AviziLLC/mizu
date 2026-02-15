@@ -5,29 +5,37 @@ import {
     MarkdownFieldContent
 } from "../field/FieldContent";
 
-export const CardType = {
-    BASIC: 'basic',
-    CLOZE: 'cloze',
-    IMAGE_OCCLUSION: 'imageOcclusion'
+/**
+ * Card schema represents the fields of the card type.
+ */
+export interface CardSchema {
+    front: any;
+    back: any;
 }
 
-export interface CardTypeToFieldMap {
-    basic: {
-        front: MarkdownFieldContent;
-        back: MarkdownFieldContent;
-    };
-    cloze: {
-        front: ClozeFrontFieldContent;
-        back: {
-            text: ClozeBackFieldContent;
-            extra: MarkdownFieldContent;
-        }
+export interface BasicCardSchema extends CardSchema {
+    front: MarkdownFieldContent;
+    back: MarkdownFieldContent;
+}
+
+export interface ClozeCardSchema extends CardSchema {
+    front: ClozeFrontFieldContent;
+    back: {
+        text: ClozeBackFieldContent;
+        extra: MarkdownFieldContent;
     }
-    imageOcclusion: {
-        front: ImageOcclusionFieldContent;
-        back: {
-            image: Blob;
-            extra: MarkdownFieldContent;
-        }
+}
+
+export interface ImageOcclusionCardSchema extends CardSchema {
+    front: ImageOcclusionFieldContent;
+    back: {
+        image: Blob;
+        extra: MarkdownFieldContent;
     }
+}
+
+export interface CardTypeToSchemaMap {
+    basic: BasicCardSchema
+    cloze: ClozeCardSchema,
+    imageOcclusion: ImageOcclusionCardSchema
 }
