@@ -1,4 +1,4 @@
-import {CardSchema} from "./CardType";
+import {CardSchema} from "./CardSchema";
 
 export type Card<T extends CardSchema> = {
     id: string;

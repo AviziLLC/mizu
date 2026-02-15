@@ -1,4 +1,4 @@
-import {BasicCardSchema, CardSchema, HtmlRawString} from "../types/card/CardType";
+import {BasicCardSchema, CardSchema, HtmlRawString} from "../types/card/CardSchema";
 
 export async function createCard<T extends CardSchema>(
     front: T['front'],
