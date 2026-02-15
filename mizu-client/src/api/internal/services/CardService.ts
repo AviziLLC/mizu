@@ -1,31 +1,32 @@
 import {BasicCardSchema, CardSchema, HtmlRawString} from "../types/card/CardSchema";
+import {CardType, CardTypeToSchemaMap} from "../types/card/CardType";
+import {create} from "ionicons/icons";
 
-export async function createCard<T extends CardSchema>(
-    front: T['front'],
-    back: T['back']
+export async function createCard<T extends CardType>(
+    front: CardTypeToSchemaMap[T]['front'],
+    back: CardTypeToSchemaMap[T]['back']
 ) {
     // todo create card in db
     // todo return card
 }
 
 export async function createBasicCard(front: HtmlRawString, back: HtmlRawString) {
-
-    return createCard<BasicCardSchema>(front, back)
+    return createCard<'Basic'>(front, back)
 }
 
-export async function createBasicReversedCard(fields: CardTemplateBasicReversed, deckName: string) {
-    // todo
+export async function createBasicAndReversedCard(front: HtmlRawString, back: HtmlRawString) {
+    return createCard<'BasicAndReversed'>(front, back);
 }
 
-export async function createClozeCard(fields: CardTemplateCloze, deckName: string) {
-    // todo
+export async function createClozeCard(front: HtmlRawString, text: HtmlRawString, extraText: HtmlRawString) {
+    return createCard<'Cloze'>(front, {text, extraText});
 }
 
-export async function createImageOcclusionCard(fields: CardTemplateImageOcclusion, deckName: string) {
-    // todo
+export async function createImageOcclusionCard(front: HtmlRawString, back: HtmlRawString) {
+    return createCard<'ImageOcclusion'>(front, back)
 }
 
-export async function createCardFromCustomTemplate(fields: CardTemplateCustom, deckName: string) {
+export async function createCardFromCustomType() {
     // todo
 }
 
