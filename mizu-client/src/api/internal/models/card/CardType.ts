@@ -4,7 +4,7 @@ import {
     ClozeCardSchema,
     CustomCardSchema,
     ImageOcclusionCardSchema
-} from "./CardSchema";
+} from "./MizuBuiltInCardSchema";
 
 export enum CardType {
     Basic = 'Basic',

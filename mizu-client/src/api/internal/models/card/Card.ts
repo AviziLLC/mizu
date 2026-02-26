@@ -1,4 +1,4 @@
-import {HtmlRawString} from "./CardSchema";
+import {HtmlRawString} from "./MizuBuiltInCardSchema";
 import {CardTemplate} from "./CardTemplate";
 import {CardType, CardTypeToSchemaMap} from "./CardType";
 
@@ -11,7 +11,8 @@ export class Card<T extends CardType> {
         /**
          * HTML template string that can be injected with schema variables from above.
          */
-        public readonly template: CardTemplate,
+        public readonly frontTemplate: CardTemplate,
+        public readonly backTemplate: CardTemplate,
     ) {
     }
 

@@ -3,22 +3,22 @@ export type HtmlRawString = string;
 /**
  * Card schema represents the fields of the card type.
  */
-export interface CardSchema {
+export interface MizuBuiltInCardSchema {
     front: unknown;
     back: unknown;
 }
 
-export interface BasicCardSchema extends CardSchema {
+export interface BasicCardSchema extends MizuBuiltInCardSchema {
     front: HtmlRawString;
     back: HtmlRawString;
 }
 
-export interface BasicAndReversedCardSchema extends CardSchema {
+export interface BasicAndReversedCardSchema extends MizuBuiltInCardSchema {
     front: HtmlRawString;
     back: HtmlRawString;
 }
 
-export interface ClozeCardSchema extends CardSchema {
+export interface ClozeCardSchema extends MizuBuiltInCardSchema {
     front: HtmlRawString;
     back: {
         text: HtmlRawString;
@@ -26,7 +26,7 @@ export interface ClozeCardSchema extends CardSchema {
     }
 }
 
-export interface ImageOcclusionCardSchema extends CardSchema {
+export interface ImageOcclusionCardSchema extends MizuBuiltInCardSchema {
     front: HtmlRawString;
     back: HtmlRawString;
 }
