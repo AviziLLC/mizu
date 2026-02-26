@@ -1,21 +1,20 @@
-import {Card} from "./Card";
+import {Card} from "../card/Card";
+
 
 /**
- * Deck that can contain cards and also sub-decks.
+ * Represents a collection of cards and nested sub-decks.
  */
-export interface Deck {
+export class Deck {
     /**
-     * The display name of the deck, also functions as a unique ID.
+     * Creates a new Deck instance.
+     *
+     * @param name - The display name of the deck.
+     * @param cards - The list of cards directly contained in this deck.
+     * @param subDecks - A collection of child decks nested within this deck.
      */
-    name: string;
-
-    /**
-     * The cards in the deck. Can be empty.
-     */
-    cards: Card[];
-
-    /**
-     * The sub-decks in the deck. Can be empty.
-     */
-    subDecks: Deck[];
+    constructor(
+        public readonly name: string,
+        public readonly cards: Card[],
+        public readonly subDecks: Deck[],
+    ) {}
 }
