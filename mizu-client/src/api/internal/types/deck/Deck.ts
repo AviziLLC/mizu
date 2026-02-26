@@ -1,4 +1,4 @@
-import {Card} from "../card/Card";
+import {AnyCard} from "../card/Card";
 
 
 /**
@@ -14,7 +14,13 @@ export class Deck {
      */
     constructor(
         public readonly name: string,
-        public readonly cards: Card[],
+        public readonly cards: AnyCard[],
         public readonly subDecks: Deck[],
-    ) {}
+    ) {
+        // todo - create deck, persist to db
+    }
+
+    private async persistToDatabase() {
+        // todo - interface with database service
+    }
 }

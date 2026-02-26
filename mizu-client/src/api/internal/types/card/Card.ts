@@ -2,6 +2,8 @@ import {HtmlRawString} from "./CardSchema";
 import {CardTemplate} from "./CardTemplate";
 import {CardType, CardTypeToSchemaMap} from "./CardType";
 
+export type AnyCard = CardType extends any ? Card<CardType> : never;
+
 export class Card<T extends CardType> {
     constructor(
         public readonly id: string,
@@ -23,18 +25,7 @@ export class Card<T extends CardType> {
      * @returns The rendered HTML as a raw string.
      */
     public render(): HtmlRawString {
-        // todo review below
-        // let renderedHtml = this.template;
-        //
-        // for (const key of Object.keys(this.schema)) {
-        //     const value = this.schema[key as keyof typeof this.schema];
-        //     // Using a regex to replace all occurrences of {{key}}, allowing for optional whitespace.
-        //     const placeholder = new RegExp(`\\{\\{\\s*${key}\\s*\\}\\}`, 'g');
-        //     // Replace with the value, or an empty string if the value is null/undefined.
-        //     renderedHtml = renderedHtml.replace(placeholder, String(value ?? ''));
-        // }
-        //
-        // return renderedHtml;
+        // todo - use handlebars to create rendered html
     }
 
     // todo: scheduling stuff
