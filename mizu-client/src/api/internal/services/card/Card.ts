@@ -1,4 +1,4 @@
-import {HtmlRawString} from "./MizuBuiltInCardSchema";
+import {HtmlRawString} from "./CardSchema";
 import {CardTemplate} from "./CardTemplate";
 import {CardType, CardTypeToSchemaMap} from "./CardType";
 

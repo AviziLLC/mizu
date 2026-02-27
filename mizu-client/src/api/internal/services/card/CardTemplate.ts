@@ -1,10 +1,10 @@
-import {MizuBuiltInCardSchema, CustomCardSchema, HtmlRawString} from "./MizuBuiltInCardSchema";
+import {CardSchema, CustomCardSchema, HtmlRawString} from "./CardSchema";
 import * as handlebars from "handlebars";
 
 export class CardTemplate {
     public readonly compiledTemplate: handlebars.TemplateDelegate;
 
-    constructor(public readonly htmlTemplateString: string, public readonly cssString: string, public readonly fields: MizuBuiltInCardSchema | CustomCardSchema) {
+    constructor(public readonly htmlTemplateString: string, public readonly cssString: string, public readonly fields: CardSchema | CustomCardSchema) {
         this.compiledTemplate = handlebars.compile(htmlTemplateString);
     }
 
