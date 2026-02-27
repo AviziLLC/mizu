@@ -1,9 +1,9 @@
 import {
     basicCardTemplate,
     basicCardTemplateId,
-    CardTemplate,
+    CardTemplate, CardTemplateCompiled,
     doesCardTemplateExist,
-    getCardTemplate,
+    getCardTemplate, getCardTemplateCompiled,
     TemplateId
 } from "./CardTemplate";
 import {CardType, CardTypeToSchemaMap} from "./CardType";
@@ -32,20 +32,20 @@ export enum CardSide {
 }
 
 export function renderCardSideToHtml(card: AnyCard, side: CardSide) {
-    const cardTemplate = getCardTemplate(card.templateId);
-    if (!cardTemplate) {
+    const cardTemplateCompiled: CardTemplateCompiled | undefined = getCardTemplateCompiled(card.templateId);
+    if (!cardTemplateCompiled) {
         throw new Error('[RenderCardSideToHtml] Card template does not exist.')
     }
 
-    let compiledTemplate;
+    let sidedCompiledTemplate;
     if (side === CardSide.FRONT) {
-        compiledTemplate = cardTemplate.frontHtmlTemplateCompiled;
+        sidedCompiledTemplate = cardTemplateCompiled.frontCompiledTemplate;
     } else if (side === CardSide.BACK) {
-        compiledTemplate = cardTemplate.backHtmlTemplateCompiled;
+        sidedCompiledTemplate = cardTemplateCompiled.backCompiledTemplate;
     } else throw new Error('[RenderCardSideToHtml] Invalid card side given.');
 
     // Insert the fields into the template.
-    return compiledTemplate(card.fields);
+    return sidedCompiledTemplate(card.fields);
 }
 
 export function renderCardFrontToHtml(card: AnyCard): string {
@@ -75,7 +75,7 @@ export async function createCard<T extends CardType>(cardType: T, fields: CardTy
         return {
             id: 'random', // todo
             fields,
-            templateId: getCardTemplate(basicCardTemplateId),
+            templateId: basicCardTemplateId,
             due: new Date() // todo
         } as Card<T>;
     }
@@ -89,7 +89,7 @@ export async function createCard<T extends CardType>(cardType: T, fields: CardTy
         return {
             id: 'random', // todo
             fields,
-            templateId: getCardTemplate(templateId!),
+            templateId: templateId,
             due: new Date() // todo
         } as Card<T>
     }

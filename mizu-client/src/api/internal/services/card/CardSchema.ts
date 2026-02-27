@@ -32,4 +32,7 @@ export interface ImageOcclusionCardSchema extends CardSchema {
     back: HtmlRawString;
 }
 
+/**
+ * Custom card schema supports any field name -> field value mapping.
+ */
 export type CustomCardSchema = Record<string, string>;
