@@ -9,6 +9,11 @@ export type TemplateId = string;
  */
 export interface CardTemplate {
     id: TemplateId,
+    frontHtmlTemplateHtmlString: string,
+    backHtmlTemplateString: string,
+
+    // todo - probably not serializable, need to load these at runtime from disk on app startup...
+    // todo - maybe consider compileAllTemplates() function with compiledTemplates map
     frontHtmlTemplateCompiled: HandlebarsTemplateDelegate;
     backHtmlTemplateCompiled: HandlebarsTemplateDelegate;
 }
@@ -39,6 +44,10 @@ export function getCardTemplate(templateId: TemplateId) {
     return allCardTemplates.get(templateId);
 }
 
+export function doesCardTemplateExist(templateId: TemplateId) {
+    return allCardTemplates.has(templateId);
+}
+
 export function modifyCardTemplate(templateId: TemplateId, frontHtmlTemplateString: string, backHtmlTemplateString: string) {
     if (!allCardTemplates.has(templateId)) {
         throw new Error('[ModifyCardTemplate] Card template with given id does not exist.')
@@ -67,7 +76,8 @@ export function createBasicCardTemplate() {
 }
 
 
-export const basicCardTemplate: CardTemplate = createBasicCardTemplate();
+const basicCardTemplate: CardTemplate = createBasicCardTemplate();
+export const basicCardTemplateId = basicCardTemplate.id; // Really just CardType.Basic ("Basic")
 
 // todo - rest of card types
 
