@@ -1,5 +1,7 @@
 import {Deck} from "./deck/Deck";
 
 export interface Collection {
-    decks: Deck[];
+    deckIds: string[];
+
+    // todo other metadata
 }

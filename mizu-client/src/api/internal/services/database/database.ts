@@ -1,53 +1,44 @@
 import {Collection} from "../collection/collection";
 import {Deck} from "../collection/deck/Deck";
-import {AnyCard} from "../collection/card/Card";
 import {MediaType} from "./MediaType";
-import {doesDirExist, readFile, writeFile} from "../filesystem/filesystem";
-import * as path from "node:path";
+import {createDir, doesDirExist, readFile, writeFile} from "../filesystem/filesystem";
 
 const MIZU_FOLDER_PATH; // TODO the current folder being used for the app - needs to support electron, capacitor, and web (for mizu sync)
-const COLLECTION_FILE_PATH = path.join(MIZU_FOLDER_PATH, 'collection.json')
-const DECKS_DIR = path.join(MIZU_FOLDER_PATH, 'decks')
+const COLLECTION_FILE_PATH = `${MIZU_FOLDER_PATH}/collection.json`
+const DECKS_DIR = `${MIZU_FOLDER_PATH}/decks`
 
 export async function saveCollection(collection: Collection) {
     return await writeFile(COLLECTION_FILE_PATH, JSON.stringify(collection));
 }
 
-export async function loadCollection(): Promise<Collection>{
+export async function loadCollection(): Promise<Collection> {
     const rawString = await readFile(COLLECTION_FILE_PATH)
     try {
-        const collection: Collection = JSON.parse(rawString) as Collection;
-        const loadDeckPromises = [];
-        for (const deck of collection.decks) {
-            loadDeckPromises.push(loadDeck(deck.id));
-        }
-
-        await Promise.all(loadDeckPromises);
-        return collection;
+        return JSON.parse(rawString) as Collection;
     } catch (err) {
         console.error(err);
         throw new Error('[LoadCollection]: Failed to parse collection.json due to invalid formatting.')
     }
 }
 
+// todo evaluate performance with large decks
 export async function saveDeck(deck: Deck) {
-    const DECK_DIR = path.join(DECKS_DIR, deck.id);
-    if (!doesDirExist(DECK_DIR)) {
-        // todo
+    const dir: string = DECKS_DIR
+    const finalPath = `${dir}/${deck.id}.json`
+    if (!(await doesDirExist(dir))) {
+        await createDir(dir)
     }
+
+    await writeFile(finalPath, JSON.stringify(deck));
 }
 
-export async function loadDeck(deckId: string) {
-    // Load all cards in this deck.
-
-
-    // Recursively load all subdecks if present.
+export async function loadDeck(deckId: string): Promise<Deck> {
+    // Load deck.json with all cards and subdecks already included.
+    const rawString: string = await readFile(DECKS_DIR + `/${deckId}'.json'}`)
+    return JSON.parse(rawString) as Deck;
 }
 
-export async function saveCards(cards: AnyCard[]) {
-    // todo - save each card to its own json file inside parent deck folder
-}
-
+// todo - fix types for media
 export async function saveMedia(mediaType: MediaType, media: any) {
     // todo
 }
